@@ -15,7 +15,8 @@ const App = () => {
   return (
     <a
       href="https://media.icc-cricket.com/dev/video/29779994-movie1.mp4"
-      onClick={downloadVideo}
+      download
+      //  onClick={downloadVideo}
     >
       Download Video
     </a>
