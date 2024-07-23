@@ -13,7 +13,7 @@ const App = () => {
     // Remove the iframe after a short delay
     setTimeout(() => {
       document.body.removeChild(iframe);
-    }, 100);
+    }, 1000);
   };
   return (
     <a href="#" onClick={handleDownload}>
