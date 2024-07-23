@@ -1,25 +1,24 @@
-import logo from './logo.svg';
-import './App.css';
-
-function App() {
+import React from "react";
+const App = () => {
+  const handleDownload = (event) => {
+    event.preventDefault(); // Prevent default anchor behavior
+    const videoUrl =
+      "https://media.icc-cricket.com/dev/video/29779994-movie1.mp4";
+    const fileName = videoUrl.split("/").pop(); // Extract filename from URL
+    // Create an iframe to handle the download in Safari
+    const iframe = document.createElement("iframe");
+    iframe.style.display = "none";
+    iframe.src = videoUrl;
+    document.body.appendChild(iframe);
+    // Remove the iframe after a short delay
+    setTimeout(() => {
+      document.body.removeChild(iframe);
+    }, 100);
+  };
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
+    <a href="#" onClick={handleDownload}>
+      Download Video
+    </a>
   );
-}
-
+};
 export default App;
