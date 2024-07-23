@@ -16,6 +16,7 @@ const App = () => {
     <a
       href="https://media.icc-cricket.com/dev/video/29779994-movie1.mp4"
       download
+      target="_blank"
       //  onClick={downloadVideo}
     >
       Download Video
