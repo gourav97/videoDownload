@@ -1,26 +1,17 @@
 import React from "react";
-const App = () => {
-  const downloadVideo = (event) => {
-    event.preventDefault();
+import { saveAs } from "file-saver";
+const DownloadVideo = () => {
+  const handleDownload = async () => {
     const url = "https://media.icc-cricket.com/dev/video/29779994-movie1.mp4";
-    const iframe = document.createElement("iframe");
-    iframe.style.display = "none";
-    iframe.src = url;
-    document.body.appendChild(iframe);
-    // Clean up after the iframe is added
-    setTimeout(() => {
-      document.body.removeChild(iframe);
-    }, 1000);
+    try {
+      const response = await fetch(url);
+      if (!response.ok) throw new Error("Network response was not ok");
+      const blob = await response.blob();
+      saveAs(blob, "movie1.mp4");
+    } catch (error) {
+      console.error("Error downloading the video:", error);
+    }
   };
-  return (
-    <a
-      href="https://media.icc-cricket.com/dev/video/29779994-movie1.mp4"
-      download
-      target="_blank"
-      //  onClick={downloadVideo}
-    >
-      Download Video
-    </a>
-  );
+  return <button onClick={handleDownload}>Download Video</button>;
 };
-export default App;
+export default DownloadVideo;
