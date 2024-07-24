@@ -1,6 +1,6 @@
 import React from "react";
 import { saveAs } from "file-saver";
-const DownloadVideo = () => {
+const App = () => {
   const handleDownload = async () => {
     const url = "https://media.icc-cricket.com/dev/video/29779994-movie1.mp4";
     try {
@@ -14,4 +14,4 @@ const DownloadVideo = () => {
   };
   return <button onClick={handleDownload}>Download Video</button>;
 };
-export default DownloadVideo;
+export default App;
