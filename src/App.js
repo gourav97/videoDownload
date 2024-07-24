@@ -4,8 +4,8 @@ const App = () => {
   const isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent);
   const { downloading, downloadFile } = useIOSDownload();
   const videoURL =
-    // "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4";
-    "https://media.icc-cricket.com/dev/video/29779994-movie1.mp4";
+    "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4";
+
   return (
     <>
       <a
