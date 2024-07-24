@@ -18,10 +18,9 @@ const App = () => {
         let newsharableFiles = [
           new File([blob], fileName, { type: "video/mp4" }),
         ];
-        console.log(newsharableFiles, "share");
+
         setsharableFiles(newsharableFiles);
         let newshowButton = navigator.canShare?.({ files: sharableFiles });
-        console.log(newshowButton, "show");
         setshowButton(newshowButton);
       })
       .catch(() => {
@@ -64,7 +63,7 @@ const App = () => {
       >
         Download Video
       </a>
-      <>Device : {device}</>
+      <>Device : {device ? "IPHONE" : "NOT IPHONE"}</>
       {showButton && <div onClick={handleDownload}>DOWNLOADING..........</div>}
     </>
   );
