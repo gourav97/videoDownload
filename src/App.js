@@ -3,7 +3,7 @@ const App = () => {
   const device = /iPad|iPhone|iPod/.test(navigator.userAgent) || false;
   const downloadVideo = async (event) => {
     event.preventDefault();
-    const url = "https://media.icc-cricket.com/dev/video/29779994-movie1.mp4";
+    const url = "https://www.learningcontainer.com/wp-content/uploads/2020/05/sample-mp4-file.mp4";
     let fileName = url.split("/").pop();
 
     try {
