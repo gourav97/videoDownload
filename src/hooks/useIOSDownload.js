@@ -14,10 +14,10 @@ const useIOSDownload = () => {
       const response = await axios.get(videoURL, {
         responseType: "blob",
       });
-      const blob = new Blob([response.data], {
-        type: response.headers["content-type"],
-      });
-      const blobUrl = URL.createObjectURL(blob);
+      // const blob = new Blob([response.data], {
+      //   type: response.headers["content-type"],
+      // });
+      const blobUrl = URL.createObjectURL(response.data);
       const anchor = document.createElement("a");
       anchor.href = blobUrl;
       anchor.download = videoName;
