@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import useIOSDownload from "./useIOSDownload";
+import useIOSDownload from "./hooks/useIOSDownload";
 const App = () => {
   const isIOSDevice = /iPad|iPhone|iPod/.test(navigator.userAgent);
   const { downloading, downloadFile } = useIOSDownload();

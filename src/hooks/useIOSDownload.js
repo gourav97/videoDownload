@@ -1,22 +1,24 @@
-import { useState } from 'react';
+import { useState } from "react";
 
-import axios from 'axios'
+import axios from "axios";
 
 const useIOSDownload = () => {
   const [downloading, setDownloading] = useState(false);
 
-  const downloadFile = async (event: React.MouseEvent<HTMLAnchorElement, MouseEvent>, videoURL: string) => {
+  const downloadFile = async (event, videoURL) => {
     event.preventDefault();
-    const videoName = videoURL.split('/').pop() || 'video.mp4';
+    const videoName = videoURL.split("/").pop() || "video.mp4";
     setDownloading(true);
 
     try {
       const response = await axios.get(videoURL, {
-        responseType: 'blob',
+        responseType: "blob",
       });
-      const blob = new Blob([response.data], { type: response.headers['content-type'] });
+      const blob = new Blob([response.data], {
+        type: response.headers["content-type"],
+      });
       const blobUrl = URL.createObjectURL(blob);
-      const anchor = document.createElement('a');
+      const anchor = document.createElement("a");
       anchor.href = blobUrl;
       anchor.download = videoName;
       document.body.appendChild(anchor);
@@ -24,7 +26,7 @@ const useIOSDownload = () => {
       document.body.removeChild(anchor);
       URL.revokeObjectURL(blobUrl);
     } catch (error) {
-        console.log(error)
+      console.log(error);
     } finally {
       setDownloading(false);
     }
