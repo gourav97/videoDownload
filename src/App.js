@@ -1,7 +1,11 @@
-import React from "react";
+import React, { useState } from "react";
 const App = () => {
-  let sharableFiles = "";
-  let showButton = false;
+  const [sharableFiles, setsharableFiles] = useState("");
+  const [showButton, setshowButton] = useState(false);
+
+  const device = /iPad|iPhone|iPod/.test(navigator.userAgent) || false;
+  console.log(device);
+
   const downloadVideo = async (event) => {
     event.preventDefault();
     const url = "https://media.icc-cricket.com/dev/video/29779994-movie1.mp4";
@@ -11,12 +15,20 @@ const App = () => {
     fetch(url)
       .then((response) => response.blob())
       .then((blob) => {
-        sharableFiles = [new File([blob], fileName, { type: "video/mp4" })];
-        showButton = navigator.canShare?.({ files: sharableFiles });
+        let newsharableFiles = [
+          new File([blob], fileName, { type: "video/mp4" }),
+        ];
+        console.log(newsharableFiles, "share");
+        setsharableFiles(newsharableFiles);
+        let newshowButton = navigator.canShare?.({ files: sharableFiles });
+        console.log(newshowButton, "show");
+        setshowButton(newshowButton);
       })
       .catch(() => {
-        showButton = false;
+        setshowButton(false);
       });
+
+    console.log(showButton, sharableFiles, "fileee");
 
     // try {
     //   // Fetch the file as a blob
@@ -52,6 +64,7 @@ const App = () => {
       >
         Download Video
       </a>
+      <>Device : {device}</>
       {showButton && <div onClick={handleDownload}>DOWNLOADING..........</div>}
     </>
   );
