@@ -8,7 +8,7 @@ const App = () => {
   return (
     <>
       <a
-        href="#"
+        href={isIOSDevice ? "#" : videoURL}
         onClick={(e) => {
           isIOSDevice && downloadFile(e, videoURL);
         }}
