@@ -11,13 +11,11 @@ const useIOSDownload = () => {
     setDownloading(true);
 
     try {
-      const response = await axios.get(videoURL, {
-        responseType: "blob",
-      });
-      // const blob = new Blob([response.data], {
-      //   type: response.headers["content-type"],
-      // });
-      const blobUrl = URL.createObjectURL(response.data);
+      const response = await fetch(videoURL);
+      if (!response.ok) throw new Error("Network response was not ok");
+      const blob = await response.blob();
+      // Create a URL for the blob
+      const blobUrl = URL.createObjectURL(blob);
       const anchor = document.createElement("a");
       anchor.href = blobUrl;
       anchor.download = videoName;
@@ -26,7 +24,7 @@ const useIOSDownload = () => {
       document.body.removeChild(anchor);
       URL.revokeObjectURL(blobUrl);
     } catch (error) {
-      console.log(error);
+      console.log(error, "eeeee");
     } finally {
       setDownloading(false);
     }
